@@ -1,5 +1,6 @@
 from django.test import TestCase, Client
 from django.core import mail
+from django.urls import resolve
 from users.forms import LoginForm, SignUpForm
 from users.models import User
 from django.contrib import auth
@@ -151,6 +152,31 @@ class UsersViewTest(TestCase):
         #we checks the messages
         for message in response.context['messages']:
             self.assertIn(str(message), ["Un email vous a été envoyé","Votre compte est bien confirmé"])
+
+
+    def test_name_of_route_to_login_is_login(self):
+        """
+        We will check if the name of the route wich leads to the login view
+        is 'login'
+        """
+        resolver = resolve('/user/login/')
+        self.assertEqual(resolver.url_name, 'login')
+
+    def test_name_of_route_to_register_is_signup(self):
+        """
+        We will check if the name of the route wich leads to the register view
+        is 'signup'
+        """
+        resolver = resolve('/user/register/')
+        self.assertEqual(resolver.url_name, 'signup')
+
+    def test_name_of_route_to_logout_is_logout(self):
+        """
+        We will check if the name of the route wich leads to the logout view
+        is 'logout'
+        """
+        resolver = resolve('/user/logout/')
+        self.assertEqual(resolver.url_name, 'logout')
                 
 
         
