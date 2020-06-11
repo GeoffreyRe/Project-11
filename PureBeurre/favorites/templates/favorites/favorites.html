@@ -12,7 +12,7 @@
     <div class="container header-title pb-5">
         <h1 class="d-block text-center text-white">Vos favoris</h1>
     </div>
-    <div class="results bg-white">
+    <div class="results results-fav bg-white">
         <div class="btn-export text-center">
             <a class="btn btn-success" href="{% url 'export' %}" title="exporter mes favoris sous format Json">Exporter mes favoris</a>
         </div>
@@ -34,9 +34,9 @@
         </div>
     </div>
 </header>
-<form class="d-flex justify-content-center py-2" action="{% url 'import_json' %}" method="post" enctype="multipart/form-data">
+<form class="d-flex flex-column flex-md-row justify-content-center align-items-center py-2" action="{% url 'import_json' %}" method="post" enctype="multipart/form-data">
     {% csrf_token %}
-    <input type="file" id="import_favorites" name="imported_file" accept=".json, application/json" title="importer un fichier json pour enregistrer de nouveaux favoris !">
+    <input class="py-2 py-md-0"type="file" id="import_favorites" name="imported_file" accept=".json, application/json" title="importer un fichier json pour enregistrer de nouveaux favoris !">
     <button name='button_send' id='button_send' type="submit" class="btn btn-primary">importer</button>
 </form>
 {% if messages %}
