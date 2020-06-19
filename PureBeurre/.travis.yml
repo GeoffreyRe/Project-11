@@ -1,22 +1,22 @@
 dist: bionic
 language: python
 python:
-        - '3.6.9'
+  - '3.6.9'
 addons:
-        firefox: latest
+  firefox: latest
 branches:
-        only:
-                - staging
+  only:
+    - staging
 
 before_script:
-        - install-webdrivers
-        - pip install -r requirements.txt
+  - install-webdrivers
+  - pip install -r requirements.txt
 env:
-        global:
-                - DJANGO_SETTINGS_MODULE="PureBeurre.settings.travis"
+  global:
+    - DJANGO_SETTINGS_MODULE="PureBeurre.settings.travis"
 
 services:
-        - postgresql
+  - postgresql
 
 script:
-        - python manage.py test -v2
+  - python manage.py test -v2
