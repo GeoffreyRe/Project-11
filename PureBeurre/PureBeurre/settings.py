@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 import os
 
-import django_heroku
+#import django_heroku
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -27,7 +27,7 @@ SECRET_KEY = '65$*y9v_g&y(ekpg38m*yqk%hua#(-^ve&1+c)-p9x$k^!c!py'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False if os.environ.get('ENV', 'development') == 'production' else True
 
-ALLOWED_HOSTS = ['.herokuapps.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['.herokuapps.com', '134.209.187.239', 'localhost', '127.0.0.1']
 
 AUTHENTICATION_BACKENDS = ['django.contrib.auth.backends.AllowAllUsersModelBackend']
 
@@ -91,8 +91,12 @@ WSGI_APPLICATION = 'PureBeurre.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'project11',
+        'USER' : 'geoffreyremacle',
+        'PASSWORD' : 'R5293100+',
+        'HOST' : 'LOCALHOST',
+        'PORT' : '5432'
 
     }
 }
@@ -167,6 +171,7 @@ EMAIL_HOST_PASSWORD = os.environ.get("PASSWORD_EMAIL")
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
 
-
+"""
 if os.environ.get("ENV") == "production":
     django_heroku.settings(locals())
+"""
