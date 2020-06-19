@@ -22,7 +22,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '65$*y9v_g&y(ekpg38m*yqk%hua#(-^ve&1+c)-p9x$k^!c!py'
+SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False if os.environ.get('ENV', 'development') == 'production' else True
@@ -91,13 +91,8 @@ WSGI_APPLICATION = 'PureBeurre.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'project11',
-        'USER' : 'geoffreyremacle',
-        'PASSWORD' : 'R5293100+',
-        'HOST' : 'LOCALHOST',
-        'PORT' : '5432'
-
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'project11-db',
     }
 }
 
@@ -175,3 +170,4 @@ EMAIL_USE_SSL = False
 if os.environ.get("ENV") == "production":
     django_heroku.settings(locals())
 """
+
