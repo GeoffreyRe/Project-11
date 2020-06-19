@@ -8,8 +8,6 @@ branches:
         only:
                 - staging
 
-install:
-
 before_script:
         - install-webdrivers
         - pip install -r requirements.txt
