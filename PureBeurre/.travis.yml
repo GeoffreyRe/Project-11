@@ -1,9 +1,10 @@
-dist: bionic
 language: python
 python:
-  - '3.6.9'
+  - '3.6'
+ 
 addons:
   firefox: latest
+
 branches:
   only:
     - staging
@@ -11,6 +12,7 @@ branches:
 before_script:
   - install-webdrivers
   - pip install -r requirements.txt
+
 env:
   global:
     - DJANGO_SETTINGS_MODULE="PureBeurre.settings.travis"
