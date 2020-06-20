@@ -26,3 +26,4 @@ whitenoise==5.1.0
 wrapt==1.12.1
 tchappui-webdrivers
 python-dotenv
+sentry-sdk
