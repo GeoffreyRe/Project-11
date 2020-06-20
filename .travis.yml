@@ -20,6 +20,8 @@ env:
   global:
     - DJANGO_SETTINGS_MODULE="PureBeurre.settings.travis"
     - SECRET_KEY="auubcdjqbcekdqedz1561ef450e"
+    - SAUCE_USERNAME="GeoffreyRe"
+    - SAUCE_ACCESS_KEY="6023c745-aab3-496f-877a-b981d8a51f67"
 services:
   - postgresql
 
