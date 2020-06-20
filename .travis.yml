@@ -16,7 +16,7 @@ before_script:
 env:
   global:
     - DJANGO_SETTINGS_MODULE="PureBeurre.settings.travis"
-
+    - SECRET_KEY="auubcdjqbcekdqedz1561ef450e"
 services:
   - postgresql
 
