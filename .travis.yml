@@ -21,4 +21,4 @@ services:
   - postgresql
 
 script:
-  - python manage.py test -v2
+  - python PureBeurre/manage.py test -v2
