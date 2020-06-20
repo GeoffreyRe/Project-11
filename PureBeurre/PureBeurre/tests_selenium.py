@@ -15,7 +15,7 @@ class SeleniumFunctionalTest(StaticLiveServerTestCase):
         cap["marionette"] = True
         binary = r'C:\Program Files\Mozilla Firefox\firefox.exe'
         options = Options()
-        options.set_headless(headless=True)
+        options.set_headless(headless=False)
         options.binary = binary
         cls.driver = webdriver.Firefox(options=options, capabilities=cap)
         cls.driver.implicitly_wait(10)
