@@ -29,7 +29,7 @@ class SeleniumFunctionalTest(StaticLiveServerTestCase):
         #options.binary = binary
         cls.driver = webdriver.Firefox(options=options)
         cls.driver.implicitly_wait(10)
-        self.driver.maximize_window()
+        cls.driver.maximize_window()
 
     @classmethod
     def tearDownClass(cls):
