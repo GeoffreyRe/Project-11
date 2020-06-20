@@ -23,3 +23,6 @@ def contact(request):
     This view renders contact template
     """
     return render(request, 'pages/contact.html')
+
+def trigger_error(request):
+    division_zero = 1/0
