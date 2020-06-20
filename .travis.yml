@@ -4,6 +4,9 @@ python:
  
 addons:
   firefox: latest
+  sauce_connect:
+    username: "GeoffreyRe"
+    access_key: "6023c745-aab3-496f-877a-b981d8a51f67"
 
 branches:
   only:

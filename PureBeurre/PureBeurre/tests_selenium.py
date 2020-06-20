@@ -11,14 +11,21 @@ class SeleniumFunctionalTest(StaticLiveServerTestCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cap = DesiredCapabilities().FIREFOX
-        cap["marionette"] = True
-        binary = r'C:\Program Files\Mozilla Firefox\firefox.exe'
-        options = Options()
-        options.set_headless(headless=False)
-        options.binary = binary
-        cls.driver = webdriver.Firefox(options=options, capabilities=cap)
-        cls.driver.implicitly_wait(10)
+        capabilities = DesiredCapabilities().FIREFOX
+        #travis
+        username = os.environ["SAUCE_USERNAME"]
+        access_key = os.environ["SAUCE_ACCESS_KEY"]
+        capabilities["tunnel-identifier"] = os.environ["TRAVIS_JOB_NUMBER"]
+        hub_url = "%s:%s@localhost:4445" % (username, access_key)
+        cls.driver = webdriver.Remote(desired_capabilities=capabilities, command_executor="http://%s/wd/hub" % hub_url)
+        #end travis
+        #cap["marionette"] = True
+        #binary = r'C:\Program Files\Mozilla Firefox\firefox.exe'
+        #options = Options()
+        #options.set_headless(headless=True)
+        #options.binary = binary
+        #cls.driver = webdriver.Firefox(options=options, capabilities=cap)
+        #cls.driver.implicitly_wait(10)
 
     @classmethod
     def tearDownClass(cls):
