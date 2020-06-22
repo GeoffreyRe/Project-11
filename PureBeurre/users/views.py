@@ -1,4 +1,5 @@
 import logging
+from sentry_sdk import capture_message
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from .forms import SignUpForm, LoginForm
@@ -50,7 +51,7 @@ def sign_up(request):
                 email.send() # we send it
                 messages.add_message(request, messages.INFO,
                     'Un email vous a été envoyé')
-                logging.info("un nouvel utilisateur a été créé : {} avec l'email {}".format(user.username, user.email))
+                capture_message("un nouvel utilisateur a été créé : {} avec l'email {}".format(user.username, user.email))
                 return redirect('home')
             except IntegrityError:
                 return render(request, 'users/register.html', {"form": form, "user_exists": True})
