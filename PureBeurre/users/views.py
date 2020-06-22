@@ -50,7 +50,7 @@ def sign_up(request):
                 email.send() # we send it
                 messages.add_message(request, messages.INFO,
                     'Un email vous a été envoyé')
-                logging.info("un nouvel utilisateur a été créé : {} avec l'email".format(user.name, user.email))
+                logging.info("un nouvel utilisateur a été créé : {} avec l'email".format(user.username, user.email))
                 return redirect('home')
             except IntegrityError:
                 return render(request, 'users/register.html', {"form": form, "user_exists": True})
@@ -119,7 +119,7 @@ def activate(request, uidb64, token):
         log(request, user)
         messages.add_message(request, messages.INFO,
                                      'Votre compte est bien confirmé')
-        logging.info("l'utilisateur {} a activé son compte".format(user.name))
+        logging.info("l'utilisateur {} a activé son compte".format(user.username))
         return redirect('home')
     else:
         return HttpResponse('Activation link is invalid!')
