@@ -4,3 +4,4 @@ migrations/
 env/
 .env
 *.log
+project11-db

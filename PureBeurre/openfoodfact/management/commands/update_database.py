@@ -14,4 +14,6 @@ class Command(BaseCommand):
         This method is executed when we call the command and this command
         fill the database
         """
+        Product.objects.update_products()
+        
         
