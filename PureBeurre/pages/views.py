@@ -26,5 +26,5 @@ def contact(request):
     return render(request, 'pages/contact.html')
 
 def trigger_error(request):
-    logging.error("Une zero division error va arriver", extra=dict(bar=43))
+    logging.exception("Une zero division error va arriver")
     division_zero = 1/0
