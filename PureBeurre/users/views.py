@@ -50,7 +50,7 @@ def sign_up(request):
                 email.send() # we send it
                 messages.add_message(request, messages.INFO,
                     'Un email vous a été envoyé')
-                logging.info("un nouvel utilisateur a été créé : {} avec l'email".format(user.username, user.email))
+                logging.info("un nouvel utilisateur a été créé : {} avec l'email {}".format(user.username, user.email))
                 return redirect('home')
             except IntegrityError:
                 return render(request, 'users/register.html', {"form": form, "user_exists": True})
