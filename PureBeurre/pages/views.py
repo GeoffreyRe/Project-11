@@ -1,3 +1,4 @@
+import logging
 from django.shortcuts import render
 
 # Create your views here.
@@ -25,4 +26,5 @@ def contact(request):
     return render(request, 'pages/contact.html')
 
 def trigger_error(request):
+    logging.error("Une zero division error va arriver", extra=dict(bar=43))
     division_zero = 1/0
