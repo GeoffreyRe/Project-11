@@ -120,7 +120,7 @@ def activate(request, uidb64, token):
         log(request, user)
         messages.add_message(request, messages.INFO,
                                      'Votre compte est bien confirmé')
-        logging.info("l'utilisateur {} a activé son compte".format(user.username))
+        capture_message("l'utilisateur {} a activé son compte".format(user.username))
         return redirect('home')
     else:
         return HttpResponse('Activation link is invalid!')

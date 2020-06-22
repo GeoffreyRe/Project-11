@@ -38,6 +38,49 @@ class ProductManager(models.Manager):
                             product.save(force_insert=True)
                         except IntegrityError:
                             pass
+    def update_products(self):
+        off = Api()
+        results = off.get_request_response_from_api()
+        with open("static/json/categories.json", "r", encoding="utf8") as file:
+            categories_list = json.load(file)
+        
+        products_saved = Product.objects.all()
+        for category_dict in categories_list:
+            for sub_category in category_dict["sub-category"]:
+                products_of_category = results[sub_category]
+                sub_cat = Category.objects.get(name=sub_category)
+                for product_infos in products_of_category:
+                    if not products_saved.filter(barcode=product_infos['_id']):
+                        """
+                        If the product is not inside database
+                        """
+                         product = Product(barcode=product_infos["_id"],
+                                      product_name=product_infos["product_name"],
+                                      brand=product_infos["brands"],
+                                      url_page=product_infos["url"],
+                                      image_url=product_infos["image_url"],
+                                      image_nutrition_url=product_infos["image_nutrition_url"],
+                                      nutrition_grade=product_infos["nutrition_grades"],
+                                      nutrition_score=product_infos["nutrition-score-fr"],
+                                      category=sub_cat)
+                    else:
+                        """
+                        If product is inside database, we update informations
+                        """
+                        product = products_saved.filter(barcode=product_infos['_id'])[0]
+                        product.update(product_name=product_infos["product_name"],
+                                      brand=product_infos["brands"],
+                                      url_page=product_infos["url"],
+                                      image_url=product_infos["image_url"],
+                                      image_nutrition_url=product_infos["image_nutrition_url"],
+                                      nutrition_grade=product_infos["nutrition_grades"],
+                                      nutrition_score=product_infos["nutrition-score-fr"])
+
+                with transaction.atomic():
+                    try:
+                        product.save(force_insert=True)
+                    except IntegrityError:
+                        pass
 
     def get_products_by_term(self, term):
         """
